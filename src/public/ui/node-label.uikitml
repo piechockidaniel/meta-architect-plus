@@ -1,0 +1,16 @@
+<!--
+  Label attached above each 3D diagram block and each library shelf block.
+  Instantiated from code (world.assets.instantiate), one per block. Short
+  labels keep the text legible at the island distance.
+-->
+<style>
+  .nl-root { width: 150px; flex-direction: column; align-items: center; padding-top: 6px; padding-bottom: 6px; padding-left: 10px; padding-right: 10px; gap: 2px; }
+  .nl-title { font-size: 18px; font-weight: 700; line-height: 22px; text-align: center; color: #272727; }
+  .nl-title:dark { color: rgba(255, 255, 255, 0.9); }
+  .nl-sub { font-size: 11px; font-weight: 500; line-height: 14px; text-align: center; color: #5f5f5f; }
+  .nl-sub:dark { color: rgba(255, 255, 255, 0.7); }
+</style>
+<Panel class="nl-root">
+  <div id="nl-title" class="nl-title">Label</div>
+  <div id="nl-sub" class="nl-sub">Boundary</div>
+</Panel>

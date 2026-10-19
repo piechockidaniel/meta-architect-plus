@@ -1,0 +1,46 @@
+<!--
+  On-demand detail panel (Horizon kit): selected component, requirement,
+  failure boundary, evidence or help. Fixed line slots keep runtime updates
+  simple; unused lines are hidden.
+-->
+<style>
+  .dt-root { width: 400px; flex-direction: column; padding-top: 14px; padding-bottom: 14px; padding-left: 18px; padding-right: 18px; gap: 8px; }
+  .dt-title { font-size: 18px; font-weight: 700; line-height: 22px; color: #272727; }
+  .dt-title:dark { color: rgba(255, 255, 255, 0.9); }
+  .dt-text { font-size: 13px; font-weight: 500; line-height: 17px; color: #272727; }
+  .dt-text:dark { color: rgba(255, 255, 255, 0.9); }
+  .dt-muted { font-size: 12px; font-weight: 500; line-height: 16px; color: #5f5f5f; }
+  .dt-muted:dark { color: rgba(255, 255, 255, 0.7); }
+  .dt-row { flex-direction: row; align-items: center; gap: 8px; flex-wrap: wrap; }
+</style>
+<Panel class="dt-root">
+  <div class="dt-row">
+    <Badge id="dt-kicker" label="DETAIL" variant="secondary" />
+    <div id="dt-title" class="dt-title">Nothing selected</div>
+  </div>
+  <div id="dt-line-0" class="dt-text">Select a component in a diagram, a requirement in the compare view, or Help on the controls panel.</div>
+  <div id="dt-line-1" class="dt-text" style="display: none">-</div>
+  <div id="dt-line-2" class="dt-text" style="display: none">-</div>
+  <div id="dt-line-3" class="dt-text" style="display: none">-</div>
+  <div id="dt-line-4" class="dt-text" style="display: none">-</div>
+  <div id="dt-line-5" class="dt-text" style="display: none">-</div>
+  <div id="dt-line-6" class="dt-text" style="display: none">-</div>
+  <div id="dt-line-7" class="dt-text" style="display: none">-</div>
+  <div id="dt-line-8" class="dt-text" style="display: none">-</div>
+  <div id="dt-line-9" class="dt-text" style="display: none">-</div>
+  <div id="dt-line-10" class="dt-text" style="display: none">-</div>
+  <div id="dt-line-11" class="dt-text" style="display: none">-</div>
+  <div id="dt-note" class="dt-muted">Evidence is illustrative catalogue content unless marked verified.</div>
+  <div class="dt-row">
+    <Button id="dt-action-0" variant="secondary" size="sm" style="display: none">
+      <ButtonLabel id="dt-action-0-label">Action</ButtonLabel>
+    </Button>
+    <Button id="dt-action-1" variant="secondary" size="sm" style="display: none">
+      <ButtonLabel id="dt-action-1-label">Action</ButtonLabel>
+    </Button>
+    <Button id="dt-close" variant="tertiary" size="sm">
+      <ButtonIcon><X></X></ButtonIcon>
+      <ButtonLabel>Back to overview</ButtonLabel>
+    </Button>
+  </div>
+</Panel>

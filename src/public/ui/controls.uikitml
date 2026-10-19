@@ -1,0 +1,58 @@
+<!--
+  Persistent controls panel (Horizon kit): home, undo, recenter, text size,
+  help, pause and immersive session controls. Stays reachable while seated;
+  it never head-locks.
+-->
+<style>
+  .cp-root { width: 250px; flex-direction: column; padding-top: 14px; padding-bottom: 14px; padding-left: 14px; padding-right: 14px; gap: 8px; }
+  .cp-title { font-size: 14px; font-weight: 700; line-height: 18px; color: #272727; }
+  .cp-title:dark { color: rgba(255, 255, 255, 0.9); }
+  .cp-text { font-size: 12px; font-weight: 500; line-height: 16px; color: #5f5f5f; }
+  .cp-text:dark { color: rgba(255, 255, 255, 0.7); }
+  .cp-alert { font-size: 12px; font-weight: 700; line-height: 16px; color: #9b0a22; }
+  .cp-alert:dark { color: #ff7b8a; }
+  .cp-button { justify-content: flex-start; }
+</style>
+<Panel class="cp-root">
+  <div class="cp-title">Controls</div>
+  <Button id="cp-focused" variant="primary" size="sm"><ButtonLabel>Focused carousel</ButtonLabel></Button>
+  <Button id="cp-home" class="cp-button" variant="secondary" size="sm">
+    <ButtonIcon><House></House></ButtonIcon>
+    <ButtonLabel>Reset to overview</ButtonLabel>
+  </Button>
+  <Button id="cp-undo" class="cp-button" variant="secondary" size="sm">
+    <ButtonIcon><Undo2></Undo2></ButtonIcon>
+    <ButtonLabel id="cp-undo-label">Undo</ButtonLabel>
+  </Button>
+  <Button id="cp-recenter" class="cp-button" variant="secondary" size="sm">
+    <ButtonIcon><LocateFixed></LocateFixed></ButtonIcon>
+    <ButtonLabel>Recenter panels</ButtonLabel>
+  </Button>
+  <Button id="cp-text" class="cp-button" variant="secondary" size="sm">
+    <ButtonIcon><ALargeSmall></ALargeSmall></ButtonIcon>
+    <ButtonLabel id="cp-text-label">Text size 100%</ButtonLabel>
+  </Button>
+  <Button id="cp-tour" class="cp-button" variant="secondary" size="sm">
+    <ButtonIcon><Lightbulb></Lightbulb></ButtonIcon>
+    <ButtonLabel id="cp-tour-label">Guided tour</ButtonLabel>
+  </Button>
+  <Button id="cp-help" class="cp-button" variant="secondary" size="sm">
+    <ButtonIcon><CircleHelp></CircleHelp></ButtonIcon>
+    <ButtonLabel>Help</ButtonLabel>
+  </Button>
+  <Button id="cp-pause" class="cp-button" variant="secondary" size="sm">
+    <ButtonIcon><Pause></Pause></ButtonIcon>
+    <ButtonLabel id="cp-pause-label">Pause</ButtonLabel>
+  </Button>
+  <Divider></Divider>
+  <Button id="cp-xr" class="cp-button" variant="primary" size="sm">
+    <ButtonIcon><RectangleGoggles></RectangleGoggles></ButtonIcon>
+    <ButtonLabel>Enter immersive</ButtonLabel>
+  </Button>
+  <Button id="cp-exit" class="cp-button" variant="secondary" size="sm" style="display: none">
+    <ButtonIcon><LogOut></LogOut></ButtonIcon>
+    <ButtonLabel>Exit immersive</ButtonLabel>
+  </Button>
+  <div id="cp-status" class="cp-text">Browser mode. Use the mouse to select.</div>
+  <div id="cp-alert" class="cp-alert" style="display: none">-</div>
+</Panel>

@@ -1,0 +1,126 @@
+<!--
+  Aligned architecture panel (Horizon kit). One instance per variant, so the
+  same role always sits in the same slot: identity/ingress, application,
+  cross-environment connectivity (hybrid only), database/backups, monitoring.
+  Node state is shown with a text marker, a label and a colour treatment.
+-->
+<style>
+  .ag-root { width: 360px; flex-direction: column; padding-top: 14px; padding-bottom: 14px; padding-left: 16px; padding-right: 16px; gap: 8px; }
+  .ag-title { font-size: 18px; font-weight: 700; line-height: 22px; color: #272727; }
+  .ag-title:dark { color: rgba(255, 255, 255, 0.9); }
+  .ag-text { font-size: 12px; font-weight: 500; line-height: 16px; color: #5f5f5f; }
+  .ag-text:dark { color: rgba(255, 255, 255, 0.7); }
+  .ag-focus { font-size: 12px; font-weight: 700; line-height: 16px; color: #272727; }
+  .ag-focus:dark { color: rgba(255, 255, 255, 0.9); }
+  .ag-row { flex-direction: row; align-items: center; gap: 8px; }
+  .ag-badge { flex-shrink: 0; }
+  .ag-columns { flex-direction: row; gap: 8px; flex-wrap: wrap; }
+  .ag-node { flex-grow: 1; flex-basis: 0; height: 48px; justify-content: flex-start; padding-left: 12px; padding-right: 12px; }
+  .ag-node-wl { flex-basis: 150px; flex-grow: 1; }
+  .ag-link-row { flex-direction: row; justify-content: space-around; height: 10px; }
+  .ag-link { width: 2px; height: 10px; background-color: rgba(39, 39, 39, 0.35); }
+  .ag-link:dark { background-color: rgba(255, 255, 255, 0.4); }
+  .ag-link-hidden { width: 2px; height: 10px; background-color: rgba(39, 39, 39, 0); }
+</style>
+<Panel class="ag-root">
+  <div class="ag-row">
+    <Badge id="ag-state" class="ag-badge" label="VIABLE" variant="positive" />
+    <div id="ag-title" class="ag-title">Cloud</div>
+  </div>
+  <div id="ag-summary" class="ag-text">Application and database in a generic external hosting environment.</div>
+  <div class="ag-columns">
+    <Button id="ag-node-identity" class="ag-node" variant="secondary" size="sm">
+      <ButtonLabel>
+        <div id="ag-node-identity-label">Identity</div>
+        <ButtonLabelSubtext id="ag-node-identity-sub">Identity source</ButtonLabelSubtext>
+      </ButtonLabel>
+    </Button>
+    <Button id="ag-node-ingress" class="ag-node" variant="secondary" size="sm">
+      <ButtonLabel>
+        <div id="ag-node-ingress-label">Ingress / TLS</div>
+        <ButtonLabelSubtext id="ag-node-ingress-sub">External hosting</ButtonLabelSubtext>
+      </ButtonLabel>
+    </Button>
+  </div>
+  <div class="ag-link-row"><div class="ag-link"></div><div class="ag-link"></div></div>
+  <Button id="ag-node-application" class="ag-node" variant="secondary" size="sm">
+    <ButtonLabel>
+      <div id="ag-node-application-label">Application</div>
+      <ButtonLabelSubtext id="ag-node-application-sub">External hosting</ButtonLabelSubtext>
+    </ButtonLabel>
+  </Button>
+  <div class="ag-link-row"><div class="ag-link"></div><div class="ag-link-hidden"></div></div>
+  <Button id="ag-node-connectivity" class="ag-node" variant="tertiary" size="sm">
+    <ButtonLabel>
+      <div id="ag-node-connectivity-label">Connectivity</div>
+      <ButtonLabelSubtext id="ag-node-connectivity-sub">Not needed: same environment</ButtonLabelSubtext>
+    </ButtonLabel>
+  </Button>
+  <div class="ag-link-row"><div class="ag-link"></div><div class="ag-link-hidden"></div></div>
+  <div class="ag-columns">
+    <Button id="ag-node-database" class="ag-node" variant="secondary" size="sm">
+      <ButtonLabel>
+        <div id="ag-node-database-label">Database</div>
+        <ButtonLabelSubtext id="ag-node-database-sub">External hosting</ButtonLabelSubtext>
+      </ButtonLabel>
+    </Button>
+    <Button id="ag-node-backup" class="ag-node" variant="secondary" size="sm">
+      <ButtonLabel>
+        <div id="ag-node-backup-label">Backups</div>
+        <ButtonLabelSubtext id="ag-node-backup-sub">External hosting</ButtonLabelSubtext>
+      </ButtonLabel>
+    </Button>
+  </div>
+  <div class="ag-link-row"><div class="ag-link"></div><div class="ag-link-hidden"></div></div>
+  <Button id="ag-node-monitoring" class="ag-node" variant="secondary" size="sm">
+    <ButtonLabel>
+      <div id="ag-node-monitoring-label">Monitoring</div>
+      <ButtonLabelSubtext id="ag-node-monitoring-sub">External hosting</ButtonLabelSubtext>
+    </ButtonLabel>
+  </Button>
+  <div id="ag-workload-row" class="ag-columns" style="display: none">
+    <Button id="ag-node-storage" class="ag-node ag-node-wl" variant="secondary" size="sm" style="display: none">
+      <ButtonLabel>
+        <div id="ag-node-storage-label">File storage</div>
+        <ButtonLabelSubtext id="ag-node-storage-sub">Boundary</ButtonLabelSubtext>
+      </ButtonLabel>
+    </Button>
+    <Button id="ag-node-jobs" class="ag-node ag-node-wl" variant="secondary" size="sm" style="display: none">
+      <ButtonLabel>
+        <div id="ag-node-jobs-label">Background jobs</div>
+        <ButtonLabelSubtext id="ag-node-jobs-sub">Boundary</ButtonLabelSubtext>
+      </ButtonLabel>
+    </Button>
+    <Button id="ag-node-cache" class="ag-node ag-node-wl" variant="secondary" size="sm" style="display: none">
+      <ButtonLabel>
+        <div id="ag-node-cache-label">Cache</div>
+        <ButtonLabelSubtext id="ag-node-cache-sub">Boundary</ButtonLabelSubtext>
+      </ButtonLabel>
+    </Button>
+    <Button id="ag-node-queue" class="ag-node ag-node-wl" variant="secondary" size="sm" style="display: none">
+      <ButtonLabel>
+        <div id="ag-node-queue-label">Message queue</div>
+        <ButtonLabelSubtext id="ag-node-queue-sub">Boundary</ButtonLabelSubtext>
+      </ButtonLabel>
+    </Button>
+    <Button id="ag-node-integration" class="ag-node ag-node-wl" variant="secondary" size="sm" style="display: none">
+      <ButtonLabel>
+        <div id="ag-node-integration-label">External integration</div>
+        <ButtonLabelSubtext id="ag-node-integration-sub">Boundary</ButtonLabelSubtext>
+      </ButtonLabel>
+    </Button>
+  </div>
+  <div id="ag-focus" class="ag-focus">Select a component to inspect it.</div>
+  <div id="ag-diff" class="ag-text">Differences vs. the inspected option appear here.</div>
+  <div class="ag-row">
+    <Button id="ag-inspect" variant="primary" size="sm">
+      <ButtonIcon><Eye></Eye></ButtonIcon>
+      <ButtonLabel id="ag-inspect-label">Inspect</ButtonLabel>
+    </Button>
+    <Button id="ag-failure" variant="secondary" size="sm">
+      <ButtonIcon><TriangleAlert></TriangleAlert></ButtonIcon>
+      <ButtonLabel>Failures</ButtonLabel>
+    </Button>
+  </div>
+  <div class="ag-text">Markers: ? unknown, ! unsupported, X failed, * affected by the last change.</div>
+</Panel>

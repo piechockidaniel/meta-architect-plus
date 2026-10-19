@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "auditFile": "../.local/mcp/audit.jsonl",
+  "apps": {
+    "architecture": {
+      "label": "Architecture decision workspace",
+      "root": "..",
+      "allowFileWrites": true,
+      "tasks": {
+        "typecheck": { "description": "Typecheck app and MCP tools", "command": "npm", "args": ["run", "typecheck"], "effect": "read", "timeoutMs": 60000 },
+        "check": { "description": "Typecheck, validate UI and run all tests", "command": "npm", "args": ["run", "check"], "effect": "read", "timeoutMs": 120000 },
+        "build": { "description": "Build production assets into dist", "command": "npm", "args": ["run", "build"], "effect": "local-write", "timeoutMs": 180000 },
+        "dev-status": { "description": "Inspect the IWSDK-managed dev server", "command": "node", "args": ["node_modules/@iwsdk/cli/bin/iwsdk.js", "dev", "status"], "effect": "read", "timeoutMs": 30000 },
+        "dev-up": { "description": "Start or reuse IWSDK dev server with its managed browser", "command": "node", "args": ["node_modules/@iwsdk/cli/bin/iwsdk.js", "dev", "up"], "effect": "local-write", "timeoutMs": 90000 },
+        "dev-down": { "description": "Stop this project's IWSDK-managed dev server", "command": "node", "args": ["node_modules/@iwsdk/cli/bin/iwsdk.js", "dev", "down"], "effect": "local-write", "timeoutMs": 30000 }
+      },
+      "endpoints": {},
+      "upstreams": {
+        "iwsdk": {
+          "description": "This project's installed IWSDK runtime/editor MCP bridge",
+          "transport": "stdio",
+          "command": "node",
+          "args": ["node_modules/@iwsdk/cli/bin/iwsdk.js", "mcp", "stdio"],
+          "timeoutMs": 30000,
+          "tools": {
+            "runtime_get_status": { "effect": "read" },
+            "runtime_list_targets": { "effect": "read" },
+            "runtime_recover": { "effect": "local-write" },
+            "browser_snapshot": { "effect": "local-write" },
+            "browser_get_console_logs": { "effect": "local-write" },
+            "browser_screenshot": { "effect": "local-write" },
+            "browser_reload_page": { "effect": "local-write" },
+            "ecs_find_entities": { "effect": "local-write" },
+            "ecs_query_entity": { "effect": "local-write" },
+            "ui_inspect": { "effect": "local-write" },
+            "scene_get_state": { "effect": "local-write" },
+            "xr_get_session_status": { "effect": "local-write" }
+          }
+        }
+      }
+    }
+  }
+}

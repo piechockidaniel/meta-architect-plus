@@ -1,0 +1,24 @@
+.app-mark-container {
+  width: 64px;
+  height: 64px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  filter: drop-shadow(0 0 12px rgba(0, 210, 255, 0.45));
+}
+.app-mark-container > svg { width: 100%; height: 100%; }
+.app-mark-container .app-mark-nexus {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.app-mark-container[data-decision-locked="true"] .app-mark-nexus {
+  animation: app-mark-lock-pulse 2s ease-in-out 2;
+}
+@keyframes app-mark-lock-pulse {
+  0%, 100% { opacity: 0.75; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.12); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .app-mark-container[data-decision-locked="true"] .app-mark-nexus { animation: none; }
+}

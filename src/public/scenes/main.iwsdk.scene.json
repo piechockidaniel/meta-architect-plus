@@ -1,0 +1,107 @@
+{
+  "version": "iwsdk.scene.v1",
+  "units": "meters",
+  "components": {
+    "com.iwsdk.components.DomeGradient": {
+      "sky": [0.2423, 0.6172, 0.8308, 1],
+      "equator": [0.6584, 0.7084, 0.7913, 1],
+      "ground": [0.807, 0.7758, 0.7454, 1],
+      "intensity": 1
+    },
+    "com.iwsdk.components.IBLGradient": {
+      "sky": [0.6902, 0.749, 0.7843, 1],
+      "equator": [0.6584, 0.7084, 0.7913, 1],
+      "ground": [0.807, 0.7758, 0.7454, 1],
+      "intensity": 1
+    }
+  },
+  "resources": {},
+  "nodes": [
+    {
+      "id": "workspace",
+      "name": "Workspace",
+      "content": { "type": "group" },
+      "transform": { "position": [0, 0, 0], "scale": 1 },
+      "children": [
+        {
+          "id": "carousel-panel", "name": "Focused carousel",
+          "content": { "asset": "carousel-panel", "type": "asset" },
+          "transform": { "position": [0, 1.5, -1.35], "scale": 0.20 },
+          "components": { "RayInteractable": {} }
+        },
+        {
+          "id": "project-keyboard", "name": "Project keyboard",
+          "content": { "asset": "project-keyboard", "type": "asset" },
+          "transform": { "position": [0, 0.78, -1.35], "rotationDeg": [-22, 0, 0], "scale": 0.125 },
+          "components": { "RayInteractable": {} }
+        },
+        {
+          "id": "graph-cloud",
+          "name": "Graph cloud",
+          "content": { "asset": "architecture-panel", "type": "asset" },
+          "transform": { "position": [-0.72, 2.2, -2.75], "rotationDeg": [0, 8, 0], "scale": 0.15 },
+          "components": { "RayInteractable": {} }
+        },
+        {
+          "id": "graph-on-premise",
+          "name": "Graph on-premise",
+          "content": { "asset": "architecture-panel", "type": "asset" },
+          "transform": { "position": [0, 2.2, -2.8], "scale": 0.15 },
+          "components": { "RayInteractable": {} }
+        },
+        {
+          "id": "graph-hybrid",
+          "name": "Graph hybrid",
+          "content": { "asset": "architecture-panel", "type": "asset" },
+          "transform": { "position": [0.72, 2.2, -2.75], "rotationDeg": [0, -8, 0], "scale": 0.15 },
+          "components": { "RayInteractable": {} }
+        },
+        {
+          "id": "decision-panel",
+          "name": "Decision Panel",
+          "content": { "asset": "decision-panel", "type": "asset" },
+          "transform": { "position": [0, 0.78, -1.35], "rotationDeg": [-22, 0, 0], "scale": 0.125 },
+          "components": { "RayInteractable": {} }
+        },
+        {
+          "id": "detail-panel",
+          "name": "Detail Panel",
+          "content": { "asset": "detail-panel", "type": "asset" },
+          "transform": { "position": [1.12, 1.12, -1.45], "rotationDeg": [0, -38, 0], "scale": 0.12 },
+          "components": { "RayInteractable": {} }
+        },
+        {
+          "id": "diagram-root",
+          "name": "Workflow diagrams",
+          "content": { "type": "group" },
+          "transform": { "position": [0, 1.46, -2.02], "rotationDeg": [35, 0, 0], "scale": 1 }
+        },
+        {
+          "id": "library-shelf",
+          "name": "Workload block library",
+          "content": { "type": "group" },
+          "transform": { "position": [-0.9, 0.6, -1.05], "rotationDeg": [0, 28, 0], "scale": 1 }
+        },
+        {
+          "id": "controls-panel",
+          "name": "Controls Panel",
+          "content": { "asset": "controls-panel", "type": "asset" },
+          "transform": { "position": [-1.02, 1.08, -1.3], "rotationDeg": [0, 38, 0], "scale": 0.12 },
+          "components": { "RayInteractable": {} }
+        }
+      ]
+    }
+  ],
+  "authoring": {
+    "views": [
+      {
+        "id": "hero",
+        "role": "hero",
+        "projection": "perspective",
+        "fov": 58,
+        "position": [0, 1.8, 0.7],
+        "target": [0, 1.2, -1.7]
+      }
+    ]
+  }
+}

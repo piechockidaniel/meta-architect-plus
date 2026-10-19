@@ -1,0 +1,17 @@
+{
+  "name": "Architecture Decision Workspace",
+  "short_name": "ArchDecide",
+  "description": "Compare cloud, on-premise and hybrid designs in 3D and leave with a decision record.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "landscape",
+  "background_color": "#0b1622",
+  "theme_color": "#102132",
+  "theme_color_dark": "#102132",
+  "icons": [
+    { "src": "/icons/icon-192.png", "type": "image/png", "sizes": "192x192", "purpose": "any" },
+    { "src": "/icons/icon-512.png", "type": "image/png", "sizes": "512x512", "purpose": "any" },
+    { "src": "/icons/icon-512-maskable.png", "type": "image/png", "sizes": "512x512", "purpose": "maskable" }
+  ]
+}

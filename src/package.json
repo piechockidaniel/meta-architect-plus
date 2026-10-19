@@ -1,0 +1,62 @@
+{
+  "name": "devpost-hackathon",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "tsx --test tests/*.test.ts",
+    "test:e2e": "node scripts/e2e.mjs",
+    "test:e2e:quick": "node scripts/e2e.mjs --no-build",
+    "test:coverage": "node scripts/coverage-gate.mjs",
+    "ui:validate": "node scripts/validate-ui.mjs",
+    "check": "npm run typecheck && npm run ui:validate && npm test",
+    "dev": "iwsdk dev restart --open --foreground",
+    "dev:runtime": "vite",
+    "dev:down": "iwsdk dev down",
+    "dev:status": "iwsdk dev status",
+    "reference:status": "iwsdk reference status",
+    "reference:warmup": "iwsdk reference warmup",
+    "typecheck": "tsc --noEmit && tsc --project tsconfig.tools.json",
+    "build": "vite build",
+    "preview": "vite preview",
+    "ai:setup": "tsx scripts/ai-setup.ts",
+    "device:prepare": "tsx scripts/prepare-device-tests.ts",
+    "device:verify": "tsx scripts/verify-device-run.ts",
+    "lint": "eslint . --ext .ts,.tsx --fix",
+    "lint:check": "eslint . --ext .ts,.tsx",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "dependencies": {
+    "@ai-sdk/anthropic": "^4.0.78",
+    "@ai-sdk/google": "^4.0.93",
+    "@ai-sdk/openai": "^4.0.91",
+    "@ai-sdk/openai-compatible": "^3.0.67",
+    "@iwsdk/core": "1.0.1",
+    "@pmndrs/uikit": "^1.0.74",
+    "@pmndrs/uikit-horizon": "^1.0.74",
+    "@pmndrs/uikit-lucide": "^1.0.74",
+    "ai": "^7.0.137",
+    "three": "npm:super-three@0.181.0",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@iwsdk/cli": "1.0.1",
+    "@iwsdk/reference": "1.0.1",
+    "@iwsdk/vite-plugin-dev": "1.0.1",
+    "@meta-quest/metavr": "^1.8.1",
+    "@types/node": "^26.6.5",
+    "@types/three": "^0.181.0",
+    "playwright": "1.64.0",
+    "tsx": "^4.23.15",
+    "typescript": "^5.5.0",
+    "vite": "^7.1.4"
+  },
+  "overrides": {
+    "sharp": "0.35.4",
+    "three": "npm:super-three@0.181.0"
+  },
+  "engines": {
+    "node": ">=20.19.0 <21.0.0-0 || >=22.12.0 <23.0.0-0 || >=24.0.0"
+  }
+}

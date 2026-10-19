@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Flat vector companion to the supplied mark; the UI draws its live nexus. -->
+  <!-- Filled outlines remain visible in the spatial SVG shape renderer. -->
+  <polygon points="32,7 53,19 53,43 32,55 11,43 11,19" fill="#00D2FF"/>
+  <polygon points="32,9.5 50,20 32,30 14,20" fill="#163c4c"/>
+  <polygon points="13,22 31,32 31,52 13,42" fill="#145568"/>
+  <polygon points="33,32 51,22 51,42 33,52" fill="#182e3d"/>
+  <path d="M31 18h2v13h-2zM21.5 35.7l10-5.5 1 1.6-10 5.5zM32.5 30.2l10 5.5-1 1.6-10-5.5z" fill="#E6ECF2"/>
+</svg>

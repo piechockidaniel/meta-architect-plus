@@ -1,0 +1,37 @@
+<meta preferred-color-scheme="light" />
+<style>
+  .root { width: 640px; flex-direction: column; gap: 8px; padding: 16px; }
+  .row { flex-direction: row; gap: 6px; justify-content: center; align-items: center; }
+  .row-between { flex-direction: row; gap: 8px; align-items: center; justify-content: space-between; }
+  .label { font-size: 13px; line-height: 17px; color: #48657a; }
+  .value { font-size: 16px; line-height: 22px; color: #102132; padding: 10px; border-radius: 10px; background-color: #e7eef5; min-height: 44px; }
+  .hint { font-size: 12px; line-height: 16px; color: #48657a; }
+  .key { width: 52px; height: 46px; border-radius: 10px; background-color: #dce7ef; align-items: center; justify-content: center; cursor: pointer; }
+  .key:hover { background-color: rgba(255, 255, 255, 0.22); }
+  .key:active { background-color: rgba(143, 211, 255, 0.45); }
+  .key-wide { width: 110px; }
+  .key-space { width: 290px; }
+  .key-label { font-size: 18px; font-weight: 600; color: #102132; }
+</style>
+<Panel id="entry-root" class="root">
+  <div class="row-between">
+    <span id="entry-label" class="label">Field</span>
+    <span id="entry-hint" class="hint">Hint</span>
+  </div>
+  <span id="entry-value" class="value">|</span>
+  <span id="entry-dictation-notice" class="hint" style="display: none">Optional dictation may send audio to a browser/vendor service. Use the keyboard for sensitive text. Permission denial never blocks typing.</span>
+  <div class="row"><div id="key-1" class="key"><span class="key-label">1</span></div><div id="key-2" class="key"><span class="key-label">2</span></div><div id="key-3" class="key"><span class="key-label">3</span></div><div id="key-4" class="key"><span class="key-label">4</span></div><div id="key-5" class="key"><span class="key-label">5</span></div><div id="key-6" class="key"><span class="key-label">6</span></div><div id="key-7" class="key"><span class="key-label">7</span></div><div id="key-8" class="key"><span class="key-label">8</span></div><div id="key-9" class="key"><span class="key-label">9</span></div><div id="key-0" class="key"><span class="key-label">0</span></div></div>
+  <div id="keys-letters" style="flex-direction: column; gap: 8px">
+    <div class="row"><div id="key-q" class="key"><span id="key-label-q" class="key-label">q</span></div><div id="key-w" class="key"><span id="key-label-w" class="key-label">w</span></div><div id="key-e" class="key"><span id="key-label-e" class="key-label">e</span></div><div id="key-r" class="key"><span id="key-label-r" class="key-label">r</span></div><div id="key-t" class="key"><span id="key-label-t" class="key-label">t</span></div><div id="key-y" class="key"><span id="key-label-y" class="key-label">y</span></div><div id="key-u" class="key"><span id="key-label-u" class="key-label">u</span></div><div id="key-i" class="key"><span id="key-label-i" class="key-label">i</span></div><div id="key-o" class="key"><span id="key-label-o" class="key-label">o</span></div><div id="key-p" class="key"><span id="key-label-p" class="key-label">p</span></div></div>
+    <div class="row"><div id="key-a" class="key"><span id="key-label-a" class="key-label">a</span></div><div id="key-s" class="key"><span id="key-label-s" class="key-label">s</span></div><div id="key-d" class="key"><span id="key-label-d" class="key-label">d</span></div><div id="key-f" class="key"><span id="key-label-f" class="key-label">f</span></div><div id="key-g" class="key"><span id="key-label-g" class="key-label">g</span></div><div id="key-h" class="key"><span id="key-label-h" class="key-label">h</span></div><div id="key-j" class="key"><span id="key-label-j" class="key-label">j</span></div><div id="key-k" class="key"><span id="key-label-k" class="key-label">k</span></div><div id="key-l" class="key"><span id="key-label-l" class="key-label">l</span></div></div>
+    <div class="row"><div id="key-shift-off" class="key key-wide"><ArrowBigUp width="22" height="22" /></div><div id="key-shift-on" class="key key-wide" style="display: none; background-color: rgba(143, 211, 255, 0.45)"><ArrowBigUpDash width="22" height="22" /></div><div id="key-z" class="key"><span id="key-label-z" class="key-label">z</span></div><div id="key-x" class="key"><span id="key-label-x" class="key-label">x</span></div><div id="key-c" class="key"><span id="key-label-c" class="key-label">c</span></div><div id="key-v" class="key"><span id="key-label-v" class="key-label">v</span></div><div id="key-b" class="key"><span id="key-label-b" class="key-label">b</span></div><div id="key-n" class="key"><span id="key-label-n" class="key-label">n</span></div><div id="key-m" class="key"><span id="key-label-m" class="key-label">m</span></div></div>
+    <div class="row"><div id="key-period" class="key"><span class="key-label">.</span></div><div id="key-comma" class="key"><span class="key-label">,</span></div><div id="key-dash" class="key"><span class="key-label">-</span></div><div id="key-slash" class="key"><span class="key-label">/</span></div><div id="key-colon" class="key"><span class="key-label">:</span></div><div id="key-apostrophe" class="key"><span class="key-label">'</span></div><div id="key-question" class="key"><span class="key-label">?</span></div><div id="key-paren" class="key"><span class="key-label">(</span></div><div id="key-close" class="key"><span class="key-label">)</span></div></div>
+  </div>
+  <div class="row"><div id="key-backspace" class="key key-wide"><Delete width="22" height="22" /></div><div id="key-space" class="key key-space"><span class="key-label">space</span></div><div id="entry-clear" class="key key-wide"><span class="key-label" style="font-size: 14px">Clear</span></div></div>
+  <div class="row-between">
+    <Button id="entry-cancel" variant="secondary" size="sm"><ButtonIcon><X /></ButtonIcon><ButtonLabel>Cancel</ButtonLabel></Button>
+    <Button id="entry-done" variant="positive" size="sm"><ButtonIcon><Check /></ButtonIcon><ButtonLabel>Done</ButtonLabel></Button>
+    <Button id="entry-dictate" variant="secondary" size="sm" style="display: none"><ButtonIcon><Mic /></ButtonIcon><ButtonLabel>Dictate</ButtonLabel></Button>
+  </div>
+</Panel>
+

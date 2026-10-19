@@ -1,0 +1,10 @@
+{
+  "_comment": "Copy to ai.local.json (gitignored) or run: npm run ai:setup",
+  "enabled": true,
+  "provider": "openai",
+  "model": "gpt-4o-mini",
+  "apiKey": "REPLACE-WITH-YOUR-KEY",
+  "baseURL": null,
+  "maxCalls": 20,
+  "allowedOrigins": ["https://localhost:8081", "https://127.0.0.1:8081"]
+}

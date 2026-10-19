@@ -1,0 +1,388 @@
+<!--
+  Primary decision panel (Horizon kit). Authored in Horizon design units; the
+  scene node scales it to about one metre wide. Element ids are the runtime
+  contract used by src/presenter.ts. Multi-line bodies use fixed line slots
+  (dp-*-line-N) because UIKit text collapses newlines.
+-->
+<style>
+  .dp-root { width: 940px; flex-direction: column; padding-top: 16px; padding-bottom: 14px; padding-left: 22px; padding-right: 22px; gap: 8px; }
+  .dp-cols { flex-direction: row; gap: 18px; align-items: flex-start; }
+  .dp-col { flex-direction: column; gap: 8px; flex-basis: 0; flex-grow: 1; }
+  .dp-header { flex-direction: row; align-items: center; justify-content: space-between; gap: 16px; }
+  .dp-header-text { flex-direction: column; gap: 2px; flex-basis: 0; flex-grow: 1; }
+  .dp-title { font-size: 22px; font-weight: 700; line-height: 26px; letter-spacing: -0.4px; color: #272727; }
+  .dp-title:dark { color: rgba(255, 255, 255, 0.9); }
+  .dp-subtitle { font-size: 12px; font-weight: 500; line-height: 16px; color: #5f5f5f; }
+  .dp-subtitle:dark { color: rgba(255, 255, 255, 0.7); }
+  .dp-heading { font-size: 16px; font-weight: 700; line-height: 20px; color: #272727; }
+  .dp-heading:dark { color: rgba(255, 255, 255, 0.9); }
+  .dp-text { font-size: 14px; font-weight: 500; line-height: 19px; color: #272727; }
+  .dp-text:dark { color: rgba(255, 255, 255, 0.9); }
+  .dp-muted { font-size: 12px; font-weight: 500; line-height: 16px; color: #5f5f5f; }
+  .dp-muted:dark { color: rgba(255, 255, 255, 0.7); }
+  .dp-alert { font-size: 13px; font-weight: 700; line-height: 17px; color: #9b0a22; }
+  .dp-alert:dark { color: #ff7b8a; }
+  .dp-row { flex-direction: row; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .dp-section { flex-direction: column; gap: 8px; }
+  .dp-card { flex-direction: column; gap: 6px; padding-top: 10px; padding-bottom: 10px; padding-left: 12px; padding-right: 12px; border-radius: 14px; background-color: rgba(39, 39, 39, 0.05); }
+  .dp-card:dark { background-color: rgba(255, 255, 255, 0.08); }
+  .dp-grow { flex-grow: 1; }
+</style>
+<Panel id="dp-root" class="dp-root">
+  <div class="dp-header">
+    <div class="dp-header-text">
+      <div class="dp-title">Architecture decision workspace</div>
+      <div id="dp-subtitle" class="dp-subtitle">Conceptual comparison of cloud, on-premise and hybrid patterns</div>
+    </div>
+    <div class="dp-row">
+      <Button id="dp-stage-product" variant="secondary" size="sm"><ButtonLabel>1 Product</ButtonLabel></Button>
+      <Button id="dp-stage-requirements" variant="secondary" size="sm"><ButtonLabel>2 Requirements</ButtonLabel></Button>
+      <Button id="dp-stage-compare" variant="secondary" size="sm"><ButtonLabel>3 Compare</ButtonLabel></Button>
+      <Button id="dp-stage-review" variant="secondary" size="sm"><ButtonLabel>4 Review</ButtonLabel></Button>
+    </div>
+  </div>
+  <ProgressBarStepper>
+    <ProgressBarStepperStep id="dp-step-0" value />
+    <ProgressBarStepperStep id="dp-step-1" />
+    <ProgressBarStepperStep id="dp-step-2" />
+    <ProgressBarStepperStep id="dp-step-3" />
+    <ProgressBarStepperStep id="dp-step-4" />
+  </ProgressBarStepper>
+  <Divider></Divider>
+
+  <div id="dp-tour-block" class="dp-card" style="display: none">
+    <div id="dp-tour-title" class="dp-heading">Guided tour</div>
+    <div class="dp-cols">
+      <div class="dp-col">
+        <div id="dp-tour-line-0" class="dp-text">-</div>
+        <div id="dp-tour-line-2" class="dp-text">-</div>
+      </div>
+      <div class="dp-col">
+        <div id="dp-tour-line-1" class="dp-muted">-</div>
+      </div>
+    </div>
+    <div class="dp-row">
+      <Button id="dp-tour-perform" variant="secondary" size="sm">
+        <ButtonIcon><Sparkles></Sparkles></ButtonIcon>
+        <ButtonLabel>Do it for me</ButtonLabel>
+      </Button>
+      <Button id="dp-tour-next" variant="primary" size="sm">
+        <ButtonIcon><ChevronRight></ChevronRight></ButtonIcon>
+        <ButtonLabel>Next step</ButtonLabel>
+      </Button>
+      <Button id="dp-tour-skip" variant="tertiary" size="sm"><ButtonLabel>Skip</ButtonLabel></Button>
+      <Button id="dp-tour-exit" variant="tertiary" size="sm">
+        <ButtonIcon><X></X></ButtonIcon>
+        <ButtonLabel>Exit tour</ButtonLabel>
+      </Button>
+    </div>
+  </div>
+
+  <div id="dp-section-start" class="dp-cols">
+    <div class="dp-col">
+    <div class="dp-heading">Decide where a business web application should run</div>
+    <div class="dp-text">Point at a button and pinch (hands), press the trigger (controller) or click (browser). The same selection action is used for every step.</div>
+    <div class="dp-text">You will confirm a product summary, answer a few high-impact questions, compare three supported patterns, change one requirement to see its consequences, and export a decision record.</div>
+    <div class="dp-muted">Recenter, text size, help, undo and pause are on the controls panel to your left. Everything works seated, without a controller.</div>
+    </div>
+    <div class="dp-col">
+    <Button id="dp-start" variant="primary" size="lg">
+      <ButtonIcon><Rocket></Rocket></ButtonIcon>
+      <ButtonLabel>Start the sample journey</ButtonLabel>
+    </Button>
+    <Button id="dp-tour-start" variant="secondary" size="lg">
+      <ButtonIcon><Lightbulb></Lightbulb></ButtonIcon>
+      <ButtonLabel>Take the guided tour first (practice, about five minutes)</ButtonLabel>
+    </Button>
+    <Button id="dp-resume" variant="secondary" size="lg" style="display: none">
+      <ButtonIcon><RotateCcw></RotateCcw></ButtonIcon>
+      <ButtonLabel id="dp-resume-label">Resume saved project</ButtonLabel>
+    </Button>
+    </div>
+  </div>
+
+  <div id="dp-section-product" class="dp-cols" style="display: none">
+    <div class="dp-col">
+    <div class="dp-row">
+      <Button id="dp-path-organization" variant="secondary" size="sm">
+        <ButtonIcon><Building2></Building2></ButtonIcon>
+        <ButtonLabel>Within an organization</ButtonLabel>
+      </Button>
+      <Button id="dp-path-greenfield" variant="secondary" size="sm">
+        <ButtonIcon><Sprout></Sprout></ButtonIcon>
+        <ButtonLabel>Starting from scratch</ButtonLabel>
+      </Button>
+    </div>
+    <div id="dp-product-title" class="dp-heading">Product</div>
+    <div id="dp-product-spec" class="dp-text">Summary</div>
+    <div class="dp-row">
+      <Button id="dp-edit-title" variant="secondary" size="sm"><ButtonLabel>Edit name</ButtonLabel></Button>
+      <Button id="dp-edit-specification" variant="secondary" size="sm"><ButtonLabel>Edit summary</ButtonLabel></Button>
+      <Button id="dp-edit-budget" variant="secondary" size="sm"><ButtonLabel>Budget</ButtonLabel></Button>
+    </div>
+    <div class="dp-row">
+      <Button id="dp-edit-hosting" variant="tertiary" size="sm"><ButtonLabel>Hosting rate</ButtonLabel></Button>
+      <Button id="dp-edit-site" variant="tertiary" size="sm"><ButtonLabel>Site rate</ButtonLabel></Button>
+      <Button id="dp-edit-connectivity" variant="tertiary" size="sm"><ButtonLabel>Link rate</ButtonLabel></Button>
+    </div>
+    <div class="dp-card">
+      <div class="dp-muted">Facts already supplied (constraint = mandatory, assumption = scenario input):</div>
+      <div id="dp-fact-line-0" class="dp-text">-</div>
+      <div id="dp-fact-line-1" class="dp-text">-</div>
+      <div id="dp-fact-line-2" class="dp-text">-</div>
+      <div id="dp-fact-line-3" class="dp-text">-</div>
+      <div id="dp-fact-line-4" class="dp-text">-</div>
+      <div id="dp-fact-line-5" class="dp-text">-</div>
+      <div id="dp-fact-line-6" class="dp-text">-</div>
+      <div id="dp-fact-line-7" class="dp-text">-</div>
+      <div id="dp-fact-line-8" class="dp-text">-</div>
+    </div>
+    </div>
+    <div class="dp-col">
+    <Button id="dp-confirm" variant="primary" size="lg">
+      <ButtonIcon><ClipboardCheck></ClipboardCheck></ButtonIcon>
+      <ButtonLabel id="dp-confirm-label">Confirm summary and assumptions</ButtonLabel>
+    </Button>
+    <div class="dp-card">
+      <div id="dp-template-title" class="dp-heading">Template library</div>
+      <div id="dp-template-summary" class="dp-text">Summary</div>
+      <div id="dp-template-teaches" class="dp-muted">Shows</div>
+      <div class="dp-row">
+        <Button id="dp-template-prev" variant="secondary" size="sm">
+          <ButtonIcon><ChevronLeft></ChevronLeft></ButtonIcon>
+          <ButtonLabel>Previous</ButtonLabel>
+        </Button>
+        <Button id="dp-template-next" variant="secondary" size="sm">
+          <ButtonIcon><ChevronRight></ChevronRight></ButtonIcon>
+          <ButtonLabel>Next</ButtonLabel>
+        </Button>
+        <Button id="dp-template-open" variant="primary" size="sm">
+          <ButtonIcon><FileText></FileText></ButtonIcon>
+          <ButtonLabel>Open template</ButtonLabel>
+        </Button>
+      </div>
+    </div>
+    <div class="dp-muted">Workload blocks (generic building blocks; add by button here or by dropping a block from the library shelf onto an option):</div>
+    <div class="dp-row">
+      <Button id="dp-workload-storage" variant="secondary" size="sm"><ButtonLabel id="dp-workload-storage-label">+ File storage</ButtonLabel></Button>
+      <Button id="dp-workload-jobs" variant="secondary" size="sm"><ButtonLabel id="dp-workload-jobs-label">+ Background jobs</ButtonLabel></Button>
+      <Button id="dp-workload-cache" variant="secondary" size="sm"><ButtonLabel id="dp-workload-cache-label">+ Cache</ButtonLabel></Button>
+      <Button id="dp-workload-queue" variant="secondary" size="sm"><ButtonLabel id="dp-workload-queue-label">+ Message queue</ButtonLabel></Button>
+      <Button id="dp-workload-integration" variant="secondary" size="sm"><ButtonLabel id="dp-workload-integration-label">+ External integration</ButtonLabel></Button>
+    </div>
+    <div id="dp-workload-info" class="dp-muted">No workload blocks added.</div>
+    <div id="dp-product-note" class="dp-muted">Sample facts are illustrative. Prepare your own project from the browser form; the spatial controls then work the same way.</div>
+    </div>
+  </div>
+
+  <div id="dp-section-requirements" class="dp-cols" style="display: none">
+    <div class="dp-col">
+    <div id="dp-conflict" class="dp-card" style="display: none">
+      <div id="dp-conflict-text" class="dp-alert">Contradiction</div>
+      <div class="dp-row">
+        <Button id="dp-conflict-fix-0" variant="negative" size="sm"><ButtonLabel id="dp-conflict-fix-0-label">Fix</ButtonLabel></Button>
+        <Button id="dp-conflict-fix-1" variant="negative" size="sm"><ButtonLabel id="dp-conflict-fix-1-label">Fix</ButtonLabel></Button>
+      </div>
+    </div>
+    <div class="dp-row">
+      <Badge id="dp-question-class" label="hard constraint" variant="primary" />
+      <div id="dp-question-meta" class="dp-muted">Question 1 of 7</div>
+    </div>
+    <div id="dp-question-title" class="dp-heading">Question</div>
+    <div id="dp-question-reason" class="dp-muted">Why this matters</div>
+    <div class="dp-row">
+      <Button id="dp-answer-0" variant="secondary" size="sm"><ButtonLabel id="dp-answer-0-label">A</ButtonLabel></Button>
+      <Button id="dp-answer-1" variant="secondary" size="sm"><ButtonLabel id="dp-answer-1-label">B</ButtonLabel></Button>
+      <Button id="dp-answer-2" variant="secondary" size="sm"><ButtonLabel id="dp-answer-2-label">C</ButtonLabel></Button>
+      <Button id="dp-answer-3" variant="secondary" size="sm"><ButtonLabel id="dp-answer-3-label">D</ButtonLabel></Button>
+      <Button id="dp-answer-4" variant="secondary" size="sm"><ButtonLabel id="dp-answer-4-label">E</ButtonLabel></Button>
+    </div>
+    <div class="dp-row">
+      <Button id="dp-question-back" variant="secondary" size="sm">
+        <ButtonIcon><ChevronLeft></ChevronLeft></ButtonIcon>
+        <ButtonLabel>Previous</ButtonLabel>
+      </Button>
+      <Button id="dp-question-next" variant="secondary" size="sm">
+        <ButtonIcon><ChevronRight></ChevronRight></ButtonIcon>
+        <ButtonLabel>Next</ButtonLabel>
+      </Button>
+      <Button id="dp-question-suggested" variant="tertiary" size="sm">
+        <ButtonIcon><Lightbulb></Lightbulb></ButtonIcon>
+        <ButtonLabel id="dp-question-suggested-label">Suggested next</ButtonLabel>
+      </Button>
+    </div>
+    </div>
+    <div class="dp-col">
+    <div class="dp-card">
+      <div class="dp-heading">Progress</div>
+      <div id="dp-intake-summary" class="dp-text">Summary</div>
+    </div>
+    <Button id="dp-go-compare" variant="primary" size="lg">
+      <ButtonIcon><GitCompare></GitCompare></ButtonIcon>
+      <ButtonLabel>Compare supported patterns</ButtonLabel>
+    </Button>
+    <div class="dp-muted">Unknown is never treated as permission. Contradictions appear above the question with a button for each input involved.</div>
+    </div>
+  </div>
+
+  <div id="dp-section-compare" class="dp-cols" style="display: none">
+    <div class="dp-col">
+    <div class="dp-row">
+      <Button id="dp-variant-cloud" variant="secondary" size="sm">
+        <Badge id="dp-state-cloud" label="VIABLE" variant="positive" />
+        <ButtonLabel>Cloud</ButtonLabel>
+      </Button>
+      <Button id="dp-variant-on-premise" variant="secondary" size="sm">
+        <Badge id="dp-state-on-premise" label="VIABLE" variant="positive" />
+        <ButtonLabel>On-premise</ButtonLabel>
+      </Button>
+      <Button id="dp-variant-hybrid" variant="secondary" size="sm">
+        <Badge id="dp-state-hybrid" label="VIABLE" variant="positive" />
+        <ButtonLabel>Hybrid</ButtonLabel>
+      </Button>
+    </div>
+    <div class="dp-row">
+      <Button id="dp-view-overview" variant="secondary" size="sm"><ButtonLabel>Overview</ButtonLabel></Button>
+      <Button id="dp-view-cost" variant="secondary" size="sm"><ButtonLabel>Cost</ButtonLabel></Button>
+      <Button id="dp-view-operations" variant="secondary" size="sm"><ButtonLabel>Operations</ButtonLabel></Button>
+      <Button id="dp-view-recovery" variant="secondary" size="sm"><ButtonLabel>Recovery</ButtonLabel></Button>
+      <Button id="dp-view-growth" variant="secondary" size="sm"><ButtonLabel>Growth</ButtonLabel></Button>
+    </div>
+    <div class="dp-card">
+      <div id="dp-compare-title" class="dp-heading">Cloud</div>
+      <div id="dp-compare-line-0" class="dp-text">-</div>
+      <div id="dp-compare-line-1" class="dp-text">-</div>
+      <div id="dp-compare-line-2" class="dp-text">-</div>
+      <div id="dp-compare-line-3" class="dp-text">-</div>
+      <div id="dp-compare-line-4" class="dp-text">-</div>
+      <div id="dp-compare-line-5" class="dp-text">-</div>
+      <div id="dp-compare-line-6" class="dp-text">-</div>
+      <div id="dp-compare-line-7" class="dp-text">-</div>
+      <div id="dp-compare-line-8" class="dp-text">-</div>
+      <div id="dp-compare-line-9" class="dp-text">-</div>
+    </div>
+    </div>
+    <div class="dp-col">
+    <div id="dp-change-block" class="dp-section">
+      <div class="dp-muted">Change a requirement or scenario input to preview its consequences:</div>
+      <div class="dp-row">
+        <Button id="dp-change-deployment" variant="secondary" size="sm"><ButtonLabel>Deployment</ButtonLabel></Button>
+        <Button id="dp-change-dataLocation" variant="secondary" size="sm"><ButtonLabel>Data location</ButtonLabel></Button>
+        <Button id="dp-change-identity" variant="secondary" size="sm"><ButtonLabel>Identity</ButtonLabel></Button>
+        <Button id="dp-change-capacity" variant="secondary" size="sm"><ButtonLabel>Capacity</ButtonLabel></Button>
+        <Button id="dp-change-operator" variant="secondary" size="sm"><ButtonLabel>Owner</ButtonLabel></Button>
+        <Button id="dp-change-recovery" variant="secondary" size="sm"><ButtonLabel>Recovery</ButtonLabel></Button>
+        <Button id="dp-change-usage" variant="secondary" size="sm"><ButtonLabel>Usage</ButtonLabel></Button>
+        <Button id="dp-change-connectivity" variant="secondary" size="sm"><ButtonLabel>Connectivity</ButtonLabel></Button>
+        <Button id="dp-change-latency" variant="secondary" size="sm"><ButtonLabel>Latency</ButtonLabel></Button>
+      </div>
+    </div>
+    <div id="dp-value-block" class="dp-card" style="display: none">
+      <div id="dp-value-prompt" class="dp-text">Choose the proposed value:</div>
+      <div class="dp-row">
+        <Button id="dp-value-0" variant="secondary" size="sm"><ButtonLabel id="dp-value-0-label">A</ButtonLabel></Button>
+        <Button id="dp-value-1" variant="secondary" size="sm"><ButtonLabel id="dp-value-1-label">B</ButtonLabel></Button>
+        <Button id="dp-value-2" variant="secondary" size="sm"><ButtonLabel id="dp-value-2-label">C</ButtonLabel></Button>
+        <Button id="dp-value-3" variant="secondary" size="sm"><ButtonLabel id="dp-value-3-label">D</ButtonLabel></Button>
+        <Button id="dp-value-4" variant="secondary" size="sm"><ButtonLabel id="dp-value-4-label">E</ButtonLabel></Button>
+        <Button id="dp-value-cancel" variant="tertiary" size="sm">
+          <ButtonIcon><X></X></ButtonIcon>
+          <ButtonLabel>Cancel</ButtonLabel>
+        </Button>
+      </div>
+    </div>
+    <div id="dp-pending-block" class="dp-card" style="display: none">
+      <div id="dp-pending-title" class="dp-heading">Proposed change</div>
+      <div id="dp-pending-line-0" class="dp-text">-</div>
+      <div id="dp-pending-line-1" class="dp-text">-</div>
+      <div id="dp-pending-line-2" class="dp-text">-</div>
+      <div id="dp-pending-line-3" class="dp-text">-</div>
+      <div class="dp-row">
+        <Button id="dp-pending-apply" variant="primary" size="sm">
+          <ButtonIcon><Check></Check></ButtonIcon>
+          <ButtonLabel>Apply as new version</ButtonLabel>
+        </Button>
+        <Button id="dp-pending-cancel" variant="secondary" size="sm">
+          <ButtonIcon><X></X></ButtonIcon>
+          <ButtonLabel>Cancel</ButtonLabel>
+        </Button>
+      </div>
+    </div>
+    <div id="dp-last-change-block" class="dp-card" style="display: none">
+      <div id="dp-last-change-title" class="dp-heading">What changed</div>
+      <div id="dp-last-change-line-0" class="dp-text">-</div>
+      <div id="dp-last-change-line-1" class="dp-text">-</div>
+      <div id="dp-last-change-line-2" class="dp-text">-</div>
+      <div class="dp-row">
+        <Button id="dp-last-change-keep" variant="secondary" size="sm">
+          <ButtonIcon><Check></Check></ButtonIcon>
+          <ButtonLabel>Keep and clear highlights</ButtonLabel>
+        </Button>
+        <Button id="dp-last-change-undo" variant="secondary" size="sm">
+          <ButtonIcon><Undo2></Undo2></ButtonIcon>
+          <ButtonLabel>Undo this change</ButtonLabel>
+        </Button>
+      </div>
+    </div>
+    <Button id="dp-go-review" variant="primary" size="lg">
+      <ButtonIcon><ClipboardCheck></ClipboardCheck></ButtonIcon>
+      <ButtonLabel>Review and decide</ButtonLabel>
+    </Button>
+    </div>
+  </div>
+
+  <div id="dp-section-review" class="dp-cols" style="display: none">
+    <div class="dp-col">
+    <div class="dp-card">
+      <div id="dp-review-title" class="dp-heading">Recommendation</div>
+      <div id="dp-review-line-0" class="dp-text">-</div>
+      <div id="dp-review-line-1" class="dp-text">-</div>
+      <div id="dp-review-line-2" class="dp-text">-</div>
+      <div id="dp-review-line-3" class="dp-text">-</div>
+      <div id="dp-review-line-4" class="dp-text">-</div>
+      <div id="dp-review-line-5" class="dp-text">-</div>
+      <div id="dp-review-line-6" class="dp-text">-</div>
+      <div id="dp-review-line-7" class="dp-text">-</div>
+      <div id="dp-review-line-8" class="dp-text">-</div>
+      <div id="dp-review-line-9" class="dp-text">-</div>
+    </div>
+    </div>
+    <div class="dp-col">
+    <div class="dp-muted">Record your selection (separate from the system recommendation). Only viable options can be selected.</div>
+    <Button id="dp-edit-rationale" variant="secondary" size="sm"><ButtonLabel>Add or edit your rationale</ButtonLabel></Button>
+    <div class="dp-row">
+      <Button id="dp-select-cloud" variant="secondary" size="sm"><ButtonLabel>Select Cloud</ButtonLabel></Button>
+      <Button id="dp-select-on-premise" variant="secondary" size="sm"><ButtonLabel>Select On-premise</ButtonLabel></Button>
+      <Button id="dp-select-hybrid" variant="secondary" size="sm"><ButtonLabel>Select Hybrid</ButtonLabel></Button>
+      <Button id="dp-select-none" variant="tertiary" size="sm"><ButtonLabel>Retain uncertainty</ButtonLabel></Button>
+    </div>
+    <div class="dp-row">
+      <Button id="dp-export" variant="primary" size="lg">
+        <ButtonIcon><Share2></Share2></ButtonIcon>
+        <ButtonLabel>Export decision record</ButtonLabel>
+      </Button>
+      <Button id="dp-export-download" variant="secondary" size="lg">
+        <ButtonIcon><Download></Download></ButtonIcon>
+        <ButtonLabel>Download files</ButtonLabel>
+      </Button>
+    </div>
+    <div id="dp-export-line-0" class="dp-text">Export creates Markdown plus one SVG diagram per pattern from this exact version.</div>
+    <div id="dp-export-line-1" class="dp-muted">-</div>
+    <div class="dp-row">
+      <Button id="dp-export-delete" variant="tertiary" size="sm" style="display: none">
+        <ButtonIcon><X></X></ButtonIcon>
+        <ButtonLabel>Delete server copy now</ButtonLabel>
+      </Button>
+      <Button id="dp-delete-local" variant="tertiary" size="sm">
+        <ButtonIcon><X></X></ButtonIcon>
+        <ButtonLabel>Delete saved local copy</ButtonLabel>
+      </Button>
+    </div>
+    <div class="dp-muted">Your data: inputs and product text stay in this browser; exports stay on the server 24 hours under a private code. See the help panel.</div>
+    </div>
+  </div>
+
+  <Divider></Divider>
+  <div id="dp-status" class="dp-muted">Sample assumptions are illustrative. Review before using for a real project.</div>
+</Panel>
+

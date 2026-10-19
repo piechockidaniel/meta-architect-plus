@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "architecture-manager": {
+      "command": "node",
+      "args": [
+        "--import",
+        "file:///H:/Active%20Solutions/hackathon-meta/devpost-hackathon/node_modules/tsx/dist/loader.mjs",
+        "H:/Active Solutions/hackathon-meta/devpost-hackathon/mcp/cli.ts"
+      ]
+    }
+  }
+}
